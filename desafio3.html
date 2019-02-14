@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Desafio 3</title>
+        <script>
+        var valores=[];
+        function mostrar(){
+            var p= document.getElementById('Notas');
+             p.innerHTML='';
+             for(let i=0;i<valores.length;i++){
+                p.innerHTML+=valores[i]+' '
+             }   
+        }
+        function Adicionar(){
+            var valor=parseFloat(document.getElementById('n1').value);
+            valores.push(valor);
+            document.getElementById('n1').value='';
+            mostrar();
+            
+        }
+        function Media(){
+            var aux=0;
+           for(var i=0;i<valores.length;i++){
+               console.log(valores[i]);
+                aux+=valores[i];
+           } 
+           console.log(aux)
+           alert('Sua media é '+(aux/valores.length));
+        }
+        function Limpar(){
+            valores.length=0
+            
+            mostrar();
+        }
+        </script>
+    </head>
+    <body>
+         <div class="tela">
+        <h1>Calculo da Média</h1>
+        <label for="n1">Nota1</label>
+        <input type="number" name='n1' id='n1' value="">
+        <button onclick="Adicionar()">Adicionar</button>
+        <button onclick='Media()'>Media</button>
+        <button onclick="Limpar()">Limpar</button>
+        <p id='Notas'></p>
+    </div>
+    </body>
+</html>
