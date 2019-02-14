@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   
+    <title>Calculo da média</title>
+    <script>
+        //Criando a função que ira recuperar os valores digitados e ira calcular a media do aluno
+        function calcular(){
+            //Recuperando os valores  .value retorna string ou seja precisa mudar o tipo da variavel para number
+            let valor1=parseInt(document.getElementById('n1').value);
+            let valor2=parseInt(document.getElementById('n2').value);
+            let valor3=parseInt(document.getElementById('n3').value);
+            //variavel media 
+            media=(valor1+valor2+valor3)/3;
+            //Verificando a media do aluno e de acordo com o valor informar sua situação
+            if(media>=7.0){
+                alert('Passou!!')
+            }else{
+                if(media<=6.9 && media>=4.0){//AND porque o OR iria considerar valores menores que 4.0
+                alert('Recuperação');
+                }else{
+                alert('Reprovado!!');
+                }
+            } 
+        }
+        
+    </script>
+    <style>
+        .tela{
+           
+            width: 750px;
+            margin:0 auto;
+            margin-top:50px;
+             }
+    </style>
+</head>
+<body>
+    
+    <div class="tela">
+        <h1>Calculo da Média</h1>
+        <label for="n1">Nota1</label>
+        <input type="number" name='n1' id='n1' value="">
+        <label for="n1">Nota2</label>
+        <input type="number" name='n2' id='n2' value="">
+        <label for="n1">Nota3</label>
+        <input type="number" name='n3' id='n3' value="">
+        <button onclick="calcular()">Calcular</button>
+    </div>
+   
+</body>
+</html>
