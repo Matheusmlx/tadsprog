@@ -18,11 +18,15 @@
         function listar(sexo){
             let mostrar=document.getElementById('mostrando');
             mostrar.innerHTML=' ';
-            for(let i=0;i<pessoas.length;i++){
+            if(sexo=='M' || sexo=='F'){
+                for(let i=0;i<pessoas.length;i++){
                 if(pessoas[i].sexo==sexo){
                     mostrar.innerHTML+=pessoas[i].nome+"<br>";
+                     mostrar.innerHTML=' ';
                 }
-                if(pessoas[i].idade<13){
+                }
+            }else{
+                 if(pessoas[i].idade<13){
                      mostrar.innerHTML+=pessoas[i].nome+"<br>";
                 }else if(pessoas[i].idade>=13 || pessoas[i].idade<21){
                     mostrar.innerHTML+=pessoas[i].nome+"<br>";
@@ -31,7 +35,9 @@
                     }else{
                          mostrar.innerHTML+=pessoas[i].nome+"<br>";
                     }
-                }
+            }
+            
+                
             }
         
         
@@ -50,10 +56,10 @@
      <button onclick="adicionar()">Adicionar</button>
       <button onclick="listar('f')">Listar Mulheres</button>
       <button onclick="listar('m')">Listar Homens</button>
-      <button onclick="listar()">Listar Crianças</button>
-      <button>Listar Adolecentes</button>
-      <button>Listar Adultos</button>
-      <button>Listar Idosos</button>
+      <button onclick="listar('c')">Listar Crianças</button>
+      <button onclick="listar('ad')">Listar Adolecentes</button>
+      <button onclick="listar('a')">Listar Adultos</button>
+      <button onclick="listar('i')">Listar Idosos</button>
       <p id="mostrando"></p>
   </div>
 </body>
