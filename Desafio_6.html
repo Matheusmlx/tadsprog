@@ -3,25 +3,58 @@
 <head>
     <meta charset="utf-8">
     <title>Calculadora IMC</title>
-    
+    <script>
+        let pessoas=[];
+
+        function adicionar(){
+          
+            pessoas.push({
+                nome: document.getElementById('nome').value,
+                idade: document.getElementById('idade').value,
+                sexo: document.getElementById('m').checked == true ? 'm' : 'f'
+            });
+            console.log(pessoas);
+        }
+        function listar(sexo){
+            let mostrar=document.getElementById('mostrando');
+            mostrar.innerHTML=' ';
+            for(let i=0;i<pessoas.length;i++){
+                if(pessoas[i].sexo==sexo){
+                    mostrar.innerHTML+=pessoas[i].nome+"<br>";
+                }
+                if(pessoas[i].idade<13){
+                     mostrar.innerHTML+=pessoas[i].nome+"<br>";
+                }else if(pessoas[i].idade>=13 || pessoas[i].idade<21){
+                    mostrar.innerHTML+=pessoas[i].nome+"<br>";
+                }else if(pessoas[i].idade>=21 || pessoas[i].idade<51){
+                     mostrar.innerHTML+=pessoas[i].nome+"<br>";
+                    }else{
+                         mostrar.innerHTML+=pessoas[i].nome+"<br>";
+                    }
+                }
+            }
+        
+        
+    </script>
    
 </head>
 <body>
   <div id="">
       <label for="">Nome</label>
-      <input type="text">
+      <input type="text" id="nome">
       <label for="">Idade</label>
-      <input type="number">
+      <input type="number" id="idade">
       <label for="">Sexo:</label>
-      <input type="radio">Masculino:
-      <input type="radio">Feminino:
-      <button>Adicionar</button>
-      <button>Listar Mulheres</button>
-      <button>Listar Homens</button>
-      <button>Listar Crianças</button>
+      <input type="radio" id="m" name='sexo'>Masculino:
+      <input type="radio" id='f' name='sexo'>Feminino:
+     <button onclick="adicionar()">Adicionar</button>
+      <button onclick="listar('f')">Listar Mulheres</button>
+      <button onclick="listar('m')">Listar Homens</button>
+      <button onclick="listar()">Listar Crianças</button>
       <button>Listar Adolecentes</button>
       <button>Listar Adultos</button>
       <button>Listar Idosos</button>
+      <p id="mostrando"></p>
   </div>
 </body>
 </html>
