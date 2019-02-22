@@ -18,29 +18,28 @@
         function listar(sexo){
             let mostrar=document.getElementById('mostrando');
             mostrar.innerHTML=' ';
-            if(sexo=='M' || sexo=='F'){
-                for(let i=0;i<pessoas.length;i++){
-                if(pessoas[i].sexo==sexo){
-                    mostrar.innerHTML+=pessoas[i].nome+"<br>";
-                     mostrar.innerHTML=' ';
-                }
-                }
-            }else{
-                 if(pessoas[i].idade<13){
-                     mostrar.innerHTML+=pessoas[i].nome+"<br>";
-                }else if(pessoas[i].idade>=13 || pessoas[i].idade<21){
-                    mostrar.innerHTML+=pessoas[i].nome+"<br>";
-                }else if(pessoas[i].idade>=21 || pessoas[i].idade<51){
-                     mostrar.innerHTML+=pessoas[i].nome+"<br>";
+            for(let i=0;i<pessoas.length;i++){
+                if(pessoas[i].sexo == sexo){
+                    mostrar.innerHTML+=pessoas[i].nome+"<br>"; 
+                }else{
+                    if(sexo=='c' && pessoas[i].idade<11){
+                        mostrar.innerHTML+=pessoas[i].nome+"<br>";  
                     }else{
-                         mostrar.innerHTML+=pessoas[i].nome+"<br>";
+                        if(sexo=='ad' && (pessoas[i].idade>11 && pessoas[i].idade<21 )){
+                             mostrar.innerHTML+=pessoas[i].nome+"<br>";   
+                        }else{
+                            if(sexo=='a' && (pessoas[i].idade>=21 && pessoas[i].idade<54 )){
+                                mostrar.innerHTML+=pessoas[i].nome+"<br>";  
+                            }else{
+                                if(sexo=='i' && (pessoas[i].idade>=54 && pessoas[i].idade<200 )){
+                                     mostrar.innerHTML+=pessoas[i].nome+"<br>";  
+                                }
+                            }
+                        }
                     }
+                }
             }
-            
-                
             }
-        
-        
     </script>
    
 </head>
