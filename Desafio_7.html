@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Calculadora IMC</title>
+    <script>
+        let numeros=[];
+
+        function adicionar(){
+            numeros.push(document.getElementById('numero').value);
+            console.log(numeros)
+            descobrir('j');
+            
+        }
+        function descobrir(tipo){
+            let mostrar=document.getElementById('mostrando');
+            mostrar.innerHTML=' ';
+            for(let i=0;i<numeros.length;i++){
+                if(tipo=='p' && numeros[i]%2==0){
+                    mostrar.innerHTML+=numeros[i]+" ";  
+                }else{
+                    if(tipo=='i' && numeros[i]%2==1){
+                         mostrar.innerHTML+=numeros[i]+" ";  
+                    }else{
+                        if(tipo=='j')
+                         mostrar.innerHTML+=numeros[i]+" ";  
+                    }
+                    
+                }
+            }
+            document.getElementById('numero').value=null;
+        }
+    </script>
+   
+</head>
+<body>
+  <div id="">
+      <h2>Pares/Impares</h2>
+      <input type="number" id="numero">
+      <button onclick="adicionar()">Adicionar</button>
+      <button onclick="descobrir('p')">Imprimir Pares</button>
+      <button onclick="descobrir('i')">Imprimir Impares</button>
+      <p id="mostrando"></p>
+  </div>
+</body>
+</html>
