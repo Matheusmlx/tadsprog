@@ -2,26 +2,45 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Calculadora IMC</title>
+    <title>Desafio_8</title>
     <script>
     let pessoas=[];
       function adicionar(){
-        pessoas.push(document.getElementById('nome'));
-        
+        pessoas.push(document.getElementById('nome').value);
+        //console.log(pessoas); debug
       }
-
+      function buscar(){
+        let nome=document.getElementById('bnome').value;
+        let mostrar=document.getElementById('mostrando');
+        mostrar.innerHTML=' ';
+        //console.log(nome) debug
+        for(let index = 0; index < pessoas.length; index++) {
+            let ldx=pessoas[index].indexOf(nome);
+            //antigmaente let ldx=pessoas.indexOf(nome) => eu estava verificando todo o vetor não uma posição especifica
+            //console.log(ldx) debug
+            if(ldx!=-1){
+              mostrar.innerHTML+=pessoas[index]+ "</br>";
+            }
+          
+        }
+      }
     </script>
-   
+   <style>
+    #caixa{
+      width: 720px;
+      margin:0 auto;
+    }
+   </style>
 </head>
 <body>
-  <div id="">
+  <div id="caixa">
       <h2>Cadastro</h2>
       <input type="text" id="nome">
       <button onclick="adicionar()">Adicionar</button>
       <h2>Busca por Nome</h2>
       <input type="text" id="bnome">
       <button onclick="buscar()">Buscar</button>
-      <p id="mostrar"></p>
+      <p id="mostrando"></p>
   </div>
 </body>
 </html>
