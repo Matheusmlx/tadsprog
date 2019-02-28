@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+ 
+    <title>Page Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        h1{
+            margin-bottom:50px;
+        }
+    </style>
+    <script>
+        
+     function calcular(){
+        
+         valores={
+             juros:parseFloat(document.getElementById('juros').value),
+             multa:parseFloat(document.getElementById('multa').value),
+             dataAtual:document.getElementById('dataAtual').value,
+             parcela:document.getElementById('parcela').value,
+             dataVencimento:document.getElementById('dataVencimento').value
+         }
+         console.log(valores)
+         //retornando os dias de atraso 
+         let atraso= () =>{return parseFloat(valores.dataAtual)-parseFloat(valores.dataVencimento)};
+
+         document.getElementById('a').innerHTML=valores.multa;
+         document.getElementById('b').innerHTML= valores.dataAtual>valores.dataVencimento ? atraso() : 0;
+         document.getElementById('c').innerHTML=valores.dataAtual;
+         document.getElementById('d').innerHTML=valores.parcela;
+     }
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+     <h1 class="text-center">Calculadora de Parcelas</h1>   
+     
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="col-sm-7">
+                <div class="form-group">
+                        <h3>Juros por mês</h3>  
+                        <input type="text" placeholder="%" class="form-control" id="juros" required>
+                        <h3>Multa</h3>
+                        <input type="text" placeholder="%" class="form-control" id="multa" required>
+                        <h3>Data Atual</h3>
+                        <input type="date" class="form-control " id="dataAtual" disabled>
+                        <h3>Valor da Parcela R$</h3>
+                        <input type="text" class="form-control" id="parcela" required>
+                        <h3>Data Vencimento</h3>
+                        <input type="date" class="form-control" id="dataVencimento">
+                        <br><br>
+                        <button class="btn btn-outline-primary btn-block" onclick="calcular()">Calcular</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-6">
+            <table class="table">
+               <thead>
+                   <tr>
+                       <th scope="col">Multa</th>
+                       <th scope="col">Dias Atraso</th>
+                       <th scope="col">Juros R$</th>
+                       <th scope="col">Total R$</th>
+                   </tr>
+               </thead> 
+               <tbody>
+                   <tr>
+                      <td id="a"></td>
+                      <td id="b"></td>
+                      <td id="c"></td>
+                      <td id="d"></td>
+                   </tr>
+               </tbody>
+            </table>
+        </div>
+    </div>   
+    
+    </div>
+    <script>
+         let date=new Date();
+         //document.getElementById('dataAtual').value=`2018-02-02`
+        document.getElementById('dataAtual').value=`${date.getFullYear()}-0${date.getMonth()+1}-${date.getDate()}`;
+    </script>
+</body>
+</html>
