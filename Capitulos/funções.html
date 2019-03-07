@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+     const square =function(x){
+         return x*x;
+     }
+     //EXEMPLO 2 makeNoise
+     const makeNoise=function(){
+       // console.log("Pling!");
+     }
+     makeNoise();
+     //Pling
+
+     const quadrado= function(base,expoente){
+         let result=1;
+
+        for(let count=0;count<expoente;count++){
+            result*=base;
+        }
+        return result;
+
+     }
+     //console.log(quadrado(2,10));
+     //BINDINGS AND SCOPES
+     //Ligações e escopo
+     let x=10;
+     if(true){
+         let y=20;//não conversa
+         var z=30;//conversa
+         //console.log(x+y+z);
+     }
+     //console.log(x+z);
+
+     //console.log("---------------------------");
+     
+     const halve=function(n){
+         return n/2;
+     }
+
+     let n=10;
+     //console.log(halve(100));
+     //console.log(n);
+
+    //Nested Scope Ambito aninhado
+    //posibilidade de criar function inside it
+
+    const hummus=function(factor){
+        const ingredient=function(amount,unit,name){
+            let ingredientAmout=amount*factor;
+            if(ingredientAmout>1){
+                unit+="s";
+            }
+            console.log(`${ingredientAmout}${unit} ${name}`);
+
+        };
+        ingredient(1, "can", "chickpeas");
+        ingredient(0.25, "cup", "tahini");
+        ingredient(0.25, "cup", "lemon juice");
+        ingredient(1, "clove", "garlic");
+        ingredient(2, "tablespoon", "olive oil");
+        ingredient(0.5, "teaspoon", "cumin");
+    }
+
+    //Function as values
+    console.log("The future says:",future());
+    //funções não fazem parte do fluxo normal de operação cima para baixo
+
+
+    function future(){
+        return "You'll never have flying cars"
+    }
+
+    //Arrow functions
+    let maior=(x,y)=>{
+        if(x>y){
+            return `${x} is big!`;
+        }else{
+            return `${y} is big!`;
+        }
+    }  
+    //console.log(maior(2,10));
+    //omitindo o () e o return  caso apenas um valor como parametro
+    square1= x => {return x*x};
+    square2= x => x*x;
+    console.log(square1(2));
+    console.log(square2(2));
+    //no parameters 
+    tost= () => {
+        console.log("TOST!");
+    }
+    tost();
+    console.log("-------------END TOPIC-------------")
+    //The call stack pilha de chamadas
+    let greet=(who) =>{
+        console.log("Hello "+who);
+    }
+    greet("Harry");
+    console.log("Bye");
+    console.log("-------------END TOPIC-------------")
+    //Optional Arguments
+    //Js não liga para o numero de argumentos que passar por parametro
+
+    function square3(x){return x*x}
+    console.log(square3(4,true,"ola"));
+    //caso se esqueça de passar um argumento, este é definido como undefined
+
+    function minus(a,b){
+        if(b===undefined) return -a;
+        else return a-b;
+    }
+    console.log(minus(10));
+    console.log(minus(10,2))
+    //caso se esqueça pode definir um valor padrao acrescentando = logo apos o argumento
+    console.log("-------------END TOPIC-------------")
+    //CLOSURE FECHO
+    function wrapValue(n){
+        let local=n;
+        return () => local;
+    }
+    let wrap1=wrapValue(1);
+    let wrap2=wrapValue(2);
+    console.log(wrap1());
+
+    console.log(wrap2());
+    
+    
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
