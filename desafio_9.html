@@ -12,23 +12,41 @@
     </style>
     <script>
         
-     function calcular(){
+     function calcular(event){
+         //Cancela o evento se for cancelável, sem parar a propagação do mesmo
+         event.preventDefault();
+       
         
          valores={
-             juros:parseFloat(document.getElementById('juros').value),
+             juros:document.getElementById('juros').value,
              multa:parseFloat(document.getElementById('multa').value),
-             dataAtual:document.getElementById('dataAtual').value,
-             parcela:document.getElementById('parcela').value,
-             dataVencimento:document.getElementById('dataVencimento').value
+             dataAtual:new Date(document.getElementById('dataAtual').value),
+             parcela:parseFloat(document.getElementById('parcela').value),
+             dataVencimento:new Date(document.getElementById('dataVencimento').value)
          }
-         console.log(valores)
-         //retornando os dias de atraso 
-         let atraso= () =>{return parseFloat(valores.dataAtual)-parseFloat(valores.dataVencimento)};
+         if(valores.dataAtual>valores.dataVencimento){
+             //dias de atrasos
+            let diferença=(((valores.dataAtual-valores.dataVencimento)/60000)/60)/24;
+            let jurosPorDia=(parseFloat(valores.juros/30)/100).toPrecision(1);
+            let jurosTotal=parseFloat(diferença*(jurosPorDia*valores.parcela));
+            let total=jurosTotal+((valores.multa/100)*valores.parcela)+valores.parcela;
+            // let total = jurosTotal + ((multaAtraso/100)*valor) + valor;
 
-         document.getElementById('a').innerHTML=valores.multa;
-         document.getElementById('b').innerHTML= valores.dataAtual>valores.dataVencimento ? atraso() : 0;
-         document.getElementById('c').innerHTML=valores.dataAtual;
-         document.getElementById('d').innerHTML=valores.parcela;
+            document.getElementById('a').innerHTML=`${valores.multa} %`;//multa
+            document.getElementById('b').innerHTML= diferença// >30 ? (diferença/30).toPrecision(1) : diferença;//dias
+            document.getElementById('c').innerHTML=`R$ ${jurosTotal}`;//juros 
+            document.getElementById('d').innerHTML=`R$ ${total}`;//total
+         }else{
+            document.getElementById('a').innerHTML=0;//multa
+            document.getElementById('b').innerHTML= 0;//dias
+            document.getElementById('c').innerHTML=0;//juros 
+            document.getElementById('d').innerHTML=valores.parcela;//total 
+         }
+       
+
+
+
+         
      }
     </script>
 </head>
@@ -39,20 +57,20 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="col-sm-7">
-                <div class="form-group">
+                <form onsubmit="calcular(event)" class="form-group">
                         <h3>Juros por mês</h3>  
                         <input type="text" placeholder="%" class="form-control" id="juros" required>
                         <h3>Multa</h3>
                         <input type="text" placeholder="%" class="form-control" id="multa" required>
                         <h3>Data Atual</h3>
-                        <input type="date" class="form-control " id="dataAtual" disabled>
+                        <input type="date" class="form-control " id="dataAtual" >
                         <h3>Valor da Parcela R$</h3>
                         <input type="text" class="form-control" id="parcela" required>
                         <h3>Data Vencimento</h3>
                         <input type="date" class="form-control" id="dataVencimento">
                         <br><br>
-                        <button class="btn btn-outline-primary btn-block" onclick="calcular()">Calcular</button>
-                </div>
+                        <button class="btn btn-outline-primary btn-block" onclick="calcular()">Calcula</button>
+                </form>
             </div>
         </div>
         
