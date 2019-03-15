@@ -11,45 +11,28 @@
         }
     </style>
     <script>
-    function Exibir(dataAtual,dataVencimento,juros,parcela,multa){
-        if(dataAtual>dataVencimento){
-             //dias de atrasos
-            let diferença=(((dataAtual-dataVencimento)/60000)/60)/24;
-            let jurosPorDia=(parseFloat(juros/30)/100).toPrecision(1);
-            let jurosTotal=parseFloat(diferença*(jurosPorDia*parcela));
-            let total=jurosTotal+((multa/100)*parcela)+parcela;
-            // let total = jurosTotal + ((multaAtraso/100)*valor) + valor;
-
-            document.getElementById('a').innerHTML=`${valores.multa} %`;//multa
-            document.getElementById('b').innerHTML= diferença// >30 ? (diferença/30).toPrecision(1) : diferença;//dias
-            document.getElementById('c').innerHTML=`R$ ${jurosTotal}`;//juros 
-            document.getElementById('d').innerHTML=`R$ ${total}`;//total
-         }else{
-            document.getElementById('a').innerHTML=0;//multa
-            document.getElementById('b').innerHTML= 0;//dias
-            document.getElementById('c').innerHTML=0;//juros 
-            document.getElementById('d').innerHTML=valores.parcela;//total 
-         }
-    }
-        
+    let total=0;
+    let padrao=[];
      function recuperando(event){
-         //Cancela o evento se for cancelável, sem parar a propagação do mesmo
          event.preventDefault();
-       
-        
-         valores={
-             juros:document.getElementById('juros').value,
-             multa:parseFloat(document.getElementById('multa').value),
-             dataAtual:new Date(document.getElementById('dataAtual').value),
-             parcela:parseFloat(document.getElementById('parcela').value),
-             dataVencimento:new Date(document.getElementById('dataVencimento').value)
+
+         let multa=parseFloat(document.getElementById('multa').value);
+         let juros=parseFloat(document.getElementById('juros').value);
+         let datatual=new Date(document.getElementById('dataAtual').value);
+         for(let i =1;i<=3;i++){
+             let parcela=parseFloat(document.getElementById('parcela'+i).value);
+             let data=new Date(document.getElementById('dataVencimento'+i).value);
+             padrao.push({parcela,data});
          }
-         Exibir(valores.dataAtual,valores.dataVencimento,valores.juros,valores.parcela,valores.multa);
+       for(let i=1;i<=3;i++){
+            if(padrao[i].data>datatual){
+                let diferença=(((valores.dataAtual-valores.dataVencimento)/60000)/60)/24;
+                let jurosPorDia=(parseFloat(valores.juros/30)/100).toPrecision(1);
+                let jurosTotal=parseFloat(diferença*(jurosPorDia*valores.parcela));
+                let total=jurosTotal+((valores.multa/100)*valores.parcela)+valores.parcela;
+               
+       }
          
-       
-
-
-
          
      }
     </script>
@@ -69,19 +52,19 @@
                         <h3>Data Atual</h3>
                         <input type="date" class="form-control " id="dataAtual" >
                         <h3>Valor da Parcela R$</h3>
-                        <input type="text" class="form-control" id="parcela" required>
+                        <input type="text" class="form-control" id="parcela1" required>
                         <h3>Valor da Parcela 2 R$</h3>
                         <input type="text" class="form-control" id="parcela2" required>
                         <h3>Valor da Parcela 3 R$</h3>
                         <input type="text" class="form-control" id="parcela3" required>
                         <h3>Data Vencimento</h3>
-                        <input type="date" class="form-control" id="dataVencimento">
+                        <input type="date" class="form-control" id="dataVencimento1">
                         <h3>Data Vencimento</h3>
                         <input type="date" class="form-control" id="dataVencimento2">
                         <h3>Data Vencimento</h3>
                         <input type="date" class="form-control" id="dataVencimento3">
                         <br><br>
-                        <button class="btn btn-outline-primary btn-block" onclick="recuperando()">Calcula</button>
+                        <button class="btn btn-outline-primary btn-block" type='submit'>Calcula</button>
                 </form>
             </div>
         </div>
